@@ -1,93 +1,90 @@
 # hydronet_cleanR
 
-## Overview
-Hydronet_cleanR is a powerful tool designed for data cleaning and processing, specifically tailored for hydrological datasets. This tool simplifies the workflow of preparing and analyzing hydrological data.
+## Project Overview
+The hydronet_cleanR project aims to provide a comprehensive workflow for cleaning river network data, ensuring high data quality for hydrological analysis.
 
-## Features
-- Comprehensive data cleaning functionality.
-- User-friendly interface for processing datasets.
-- Supports various hydrological data formats.
-- Fast processing times with optimized algorithms.
+## Key Features
+- Automated river network cleaning
+- Support for various input formats
+- Customization options for different countries
 
-## Structure
-The project is structured as follows:
+## Repository Structure
+- `data/`: Input data files
+- `scripts/`: Python scripts for data processing
+- `output/`: Directory for cleaned output files
+- `README.md`: Documentation for the project
+
+## Installation Instructions
+To install the required packages, please run:
+```bash
+pip install -r requirements.txt
 ```
-/hydronet_cleanR
-    ├── /src          # Source files
-    ├── /data         # Input data files
-    ├── /output       # Output files
-    ├── README.md     # Documentation
-    └── LICENSE       # License information
-```
-
-## Installation
-To install hydronet_cleanR, follow these steps:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/messamat/hydronet_cleanR.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd hydronet_cleanR
-   ```
-3. Install the necessary dependencies (ensure you have R and Rtools installed):
-   ```R
-   install.packages(c('dplyr', 'ggplot2', 'lubridate'))
-   ```
 
 ## Dependencies
-- R (version >= 4.0)
-- Rtools (for Windows users)
-- Packages used: dplyr, ggplot2, lubridate
+- Python 3.8+
+- pandas
+- numpy
+- geopandas
 
-## Input Data
-The tool supports multiple input formats, including but not limited to:
-- CSV files
-- Excel files
-- JSON files
+## Input Data Requirements
+- Input files must be in GeoPackage or Shapefile format.
+- Data should contain river network geometries.
 
-Ensure your data follows the expected structure to utilize all features effectively.
+## Detailed Workflow Pipeline Steps
+1. **Load Data**: Import river network data.
+2. **Initial Cleaning**: Remove duplicates and irrelevant features.
+3. **Topology Check**: Validate geometries for topological correctness.
+4. **Attribute Assignment**: Assign required attributes to river features.
+5. **Output Generation**: Save cleaned data to specified output format.
 
-## Workflow Pipeline
-1. Data Import: Load your data into the system.
-2. Data Cleaning: Clean and preprocess your data using the provided functions.
-3. Data Analysis: Perform analysis using statistical tools and visualization.
-4. Output Generation: Generate cleaned datasets and visualizations.
-
-## Output Files
-The tool generates various output files, including:
-- Cleaned data files (in CSV format)
-- Summary reports (text/CSV format)
-- Visualizations (plot files in PNG/SVG format)
+## Output Files and Attributes
+- **Output Format**: Cleaned data is saved in GeoPackage format.
+- **Key Attributes**:
+  - `id`: Unique identifier for each river.
+  - `length`: Length of the river segments.
+  - `flow_direction`: Direction of flow.
 
 ## Usage Instructions
-To use hydronet_cleanR, execute the following commands in R:
-```R
-library(hydronet_cleanR)
-# Load your data
-data <- load_data('path/to/your/data.csv')
-# Clean your data
-cleaned_data <- clean_data(data)
-# Analyze your data
-summary_report <- generate_report(cleaned_data)
-```  
+To run the cleaning workflow, execute the following command:
+```bash
+python scripts/clean_river_network.py --input data/input_data.gpkg --output output/cleaned_data.gpkg
+```
+
+## Customization Options
+Users can customize the cleaning process by modifying the `config.yaml` file to adjust parameters such as threshold values and specific cleaning rules.
 
 ## Country-Specific Notes
-Hydronet_cleanR is adaptable to various hydrological contexts. It provides specific guidelines for different countries and regions, ensuring compliance with local regulations and standards.
+### Croatia
+- Special adjustments for managing karstic river systems.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Czech Republic
+- Includes regional river classification standards.
+
+### Finland
+- Focus on non-perennial rivers.
+
+### France
+- Adherence to Jean-Louis watershed guidelines.
+
+### Hungary
+- Custom rules for thermal waters.
+
+### Spain
+- Special handling for river systems with seasonal flows.
+
+## License Information
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## References
-- Doe, J. (2022). Hydrological Dataset Analysis: Techniques and Tools. Journal of Hydrology.
+- Author et al., Year. Title. Journal. DOI.
 
-## Citation
-If you use hydronet_cleanR in your research, please cite the following:
+## Citation Guidance
+When citing this project, please use the following format:
 ```bibtex
-@article{doe2022,
-  title={Hydrological Dataset Analysis: Techniques and Tools},
-  author={Doe, J.},
-  journal={Journal of Hydrology},
-  year={2022}
+@misc{hydronet_cleanR,
+  author = {Author},
+  title = {hydronet_cleanR},
+  year = {2026},
+  url = {https://github.com/messamat/hydronet_cleanR}
 }
 ```
