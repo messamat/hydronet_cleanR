@@ -11,7 +11,7 @@
 #Get ancillary catchment data
 
 library(rprojroot)
-rootdir <- rprojroot::find_root(has_dir('R'))
+rootdir <- rprojroot::find_root(has_dir('src'))
 setwd(rootdir)
 
 source('src/packages.R')
@@ -183,6 +183,7 @@ list(
       write_sf(lyr, paste0(tools::file_path_sans_ext(path), '.shp'))
     })
   )
+)
 
 
 
