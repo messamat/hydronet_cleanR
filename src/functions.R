@@ -345,6 +345,7 @@ subset_network <- function(in_hydromod_paths_dt, out_dir, overwrite=FALSE) {
 
 clean_network <- function(rivnet_path, idcol, 
                           node_clustering_dist,
+                          st_validate_shp = TRUE,
                           min_segment_length = 20,
                           outdir=NULL, save_gpkg=FALSE, 
                           return_path=FALSE) {
@@ -354,6 +355,11 @@ clean_network <- function(rivnet_path, idcol,
     #Make sure that the geometry column is equally named regardless 
     #of file format (see https://github.com/r-spatial/sf/issues/719)
     st_set_geometry('geometry') 
+  
+  #Remove invalid segments (e.g., single-point linestrings)
+  if (validate_shp) {
+    rivnet <- rivnet[!is.na(st_is_valid(rivnet)) & st_is_valid(rivnet)==TRUE,]
+  }
   
   #Preformat basic network
   sfnet_ini <- rivnet %>%
