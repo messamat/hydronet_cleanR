@@ -1,15 +1,3 @@
-#Small changes to implement before next run
-#L22 functions: capitalize S in spain
-#L56 and L158 functions: catch metacols regardless of capitalization
-#Standardize country names across all input datasets
-#Standardize metacols across all input datasets
-#site names in "data/wp1/Results_present_period_final/data/Genal/Genal_sampling_sites_ReachIDs.csv" are incorrect
-#Need to know how sites were snapped to network "C:\DRYvER_wp2\WP2 - Predicting biodiversity changes in DRNs\Coordinates\Shapefiles with sites moved to the river network\Croatia_near_coords.shp"
-#3s flow acc for Europe: https://data.hydrosheds.org/file/hydrosheds-v1-acc/eu_acc_3s.zip
-
-#Make sure that biological data are standardized by area to get densities
-#Get ancillary catchment data
-
 library(rprojroot)
 rootdir <- rprojroot::find_root(has_dir('src'))
 setwd(rootdir)
